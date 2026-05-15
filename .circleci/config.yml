@@ -4,18 +4,17 @@ jobs:
   build-and-test:
     machine:
       image: ubuntu-2004:current
-steps:
-  - checkout
-  - run: make deps
-  - run: make lint
-  - run: make test
-  - run: make docker_build
-  - run: make docker_push
-    
+      docker_layer_caching: true
+
+    steps:
+      - checkout
+      - run: make deps
+      - run: make lint
+      - run: make test
+      - run: make docker_build
+      - run: make docker_push
 
 workflows:
   basic:
     jobs:
       - build-and-test
-
-
